@@ -1,0 +1,80 @@
+### This file is used by codedeploy service
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/html/WordPress
+hooks:
+  BeforeInstall:
+    - location: scripts/install_dependencies.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: scripts/change_permissions.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_server.sh
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: scripts/stop_server.sh
+      timeout: 300
+      runas: root
+
+### Create following scripts with the application code itself
+### I am writing related script here only:
+'''
+scripts/install_dependencies.sh:
+
+#!/bin/bash
+yum groupinstall -y "Web Server" "MySQL Database" "PHP Support"
+yum install -y php-mysql
+
+scripts/change_permissions.sh:
+#!/bin/bash
+chmod -R 755 /var/www/html/WordPress
+
+scripts/start_server.sh:
+#!/bin/bash
+service httpd start
+service mysqld start
+
+
+scripts/stop_server.sh:
+#!/bin/bash
+isExistApp=`pgrep httpd`
+if [[ -n  $isExistApp ]]; then
+   service httpd stop
+fi
+isExistApp=`pgrep mysqld`
+if [[ -n  $isExistApp ]]; then
+    service mysqld stop
+fi
+
+
+## Give all of the scripts executable permissions. 
+chmod +x /tmp/WordPress/scripts/*
+
+'''
+### Overall the source code would look like this:
+/tmp/
+  |--WordPress/
+      |-- appspec.yml  
+      |-- scripts/
+      |    |-- install_dependencies.sh
+      |    |-- change_permissions.sh
+      |    |-- start_server.sh
+      |    |-- stop_server.sh
+      |############Here onwards the content of web application ##########
+      |-- wp-admin/
+      |    |-- (various files...)
+      |-- wp-content/
+      |    |-- (various files...)
+      |-- wp-includes/
+      |    |-- (various files...)
+      |-- index.php
+      |-- license.txt
+      |-- readme.html
+      |-- (various files ending with .php...)
+
