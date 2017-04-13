@@ -2,6 +2,8 @@
 
 ##pip is normally preloaded on systems by default. If not use below comand to install pip:
  sudo apt-get install -y python-pip 
+ OR
+ yum install -y python-pip
  
  ## Use pip to install awscli
  sudo pip install awscli
@@ -40,6 +42,9 @@ $chmod 600 $HOME/.aws/config
 
 ## Tell your bash about it by adding this line in $HOME/.bashrc
 $export AWS_CONFIG_FILE=$HOME/.aws/config
+
+## for installing auto-complete
+$complete -C '/usr/local/bin/aws_completer' aws
 
 ## Check if evertything is working fine
 $aws ec2 describe-regions --output table
