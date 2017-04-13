@@ -1,0 +1,19 @@
+## steps to install codedeploy
+
+sudo yum update
+sudo yum install ruby
+sudo yum install wget
+cd /home/ec2-user
+wget https://bucket-name.s3.amazonaws.com/latest/install  
+## <bucket-name> bucket is maintained by aws for each region to hold files 
+## Basically we are copying a aws-maintained "install" script on our own instance
+## Here <bucket-name> = aws-codedeploy-ap-south-1 ## for mumbai region
+
+chmod +x ./install
+sudo ./install auto   
+sudo service codedeploy-agent status      ## Service not up yet
+sudo service codedeploy-agent start        ## start codedeploy agent
+sudo service codedeploy-agent status        ## it must be woring now
+
+
+
