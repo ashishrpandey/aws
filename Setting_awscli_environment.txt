@@ -8,17 +8,7 @@
  ## Use pip to install awscli
  sudo pip install awscli
  
- ## aws command's output often gives Jason data, which is cumbersome to read to extract the desired Info.
- ## jq is used to parse Jason data.
- ## jq is not installed by default in Amazon Linux or Ubuntu. It can be installed as:
-sudo apt-get install jq
-
-## Typical use of jq:
-$ aws route53 list-hosted-zones | jq '.HostedZones[].Name'
-"epitech.nl."
-"awssystemadministration.com."
-## some people prefer "--query" option than jq
-
+ 
 ## Add the secret aws access key in config file: $HOME/.aws/config 
 aws_access_key_id = <access key id>
 aws_secret_access_key = <secret access key>
@@ -29,8 +19,7 @@ region = us-west-1
 # It is an interactive command and shall ask for access key ID, secret access key and default region.
 #Sample output on my machine:
 
- C:\Users\Ashish> aws configure
-File association not found for extension .py
+C:\Users\Ashish> aws configure
 AWS Access Key ID [None]: ****************************
 AWS Secret Access Key [None]: *****************************
 Default region name [None]: ap-south-1   ## For mumbai
@@ -43,7 +32,8 @@ $chmod 600 $HOME/.aws/config
 ## Tell your bash about it by adding this line in $HOME/.bashrc
 $export AWS_CONFIG_FILE=$HOME/.aws/config
 
-## for installing auto-complete
+## for installing auto-complete for aws commands. 
+## This will enable you to auto-complete aws commands by hitting tab
 $complete -C '/usr/local/bin/aws_completer' aws
 
 ## Check if evertything is working fine
@@ -72,6 +62,16 @@ $aws ec2 describe-regions --output table
 ||  ec2.us-west-2.amazonaws.com      |  us-west-2       ||
 |+-----------------------------------+------------------+|
 
+## aws command's output often gives Jason data, which is cumbersome to read to extract the desired Info.
+ ## jq is used to parse Jason data.
+ ## jq is not installed by default in Amazon Linux or Ubuntu. It can be installed as:
+sudo apt-get install jq
+
+## Typical use of jq; The below command will extract name of the hosted zones only
+$ aws route53 list-hosted-zones | jq '.HostedZones[].Name'
+"epitech.nl."
+"awssystemadministration.com."
+## some people prefer "--query" option than jq
 
 
 ## Congratulation you are good to go to the next level.
