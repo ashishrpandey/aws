@@ -1,4 +1,5 @@
 ### This file is used by codedeploy service
+### Sample appspec file for deploying wordpress
 version: 0.0
 os: linux
 files:
