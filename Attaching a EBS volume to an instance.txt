@@ -1,0 +1,40 @@
+**** Attach an EBS Volume *****
+
+Create a volume in the SAME availaility zone as the instance.
+Attach the volume to the instance.
+Go to the instance
+ssh ec2-user@<ip-addr> -i C:/Users/keypair.pem
+sudo su
+yum -y update
+$lsblk
+NAME    MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+xvda    202:0    0   8G  0 disk
++-xvda1 202:1    0   8G  0 part /
+xvdf    202:80   0   1G  0 disk
+
+$mkfs -t ext4 /dev/xvda1             #To format with ext4 fs
+$cd /
+$mkdir /firstwebserver
+$mount /dev/xvdf /firstwebserver
+
+**** Detach an EBS Volume *****
+$umount /firstwebserver
+On Console select Volume and detach
+
+
+**** Create a snapshot from Volume *****
+on console:
+--go to volumes
+-- select the volume
+-- Action --> Create Snapshot -->Give it a name --> Create
+--go to snapshots
+you can see a snapshot there
+
+
+**** Convert snapshot to Volume*****
+on console:
+go to snapshot tab
+select the snapshot
+Action -- >create Volume --> Create
+We can again attach the volume to ec2-instances
+ 
