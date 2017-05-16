@@ -1,5 +1,6 @@
 ## Preparing aws tools
 
+## On instances with Amazon Linux AMI, aws is pre-installed. In that case skip installation step and Go to configuration of aws.  
 ##pip is normally preloaded on systems by default. If not use below comand to install pip:
  sudo apt-get install -y python-pip 
  OR
@@ -35,6 +36,7 @@ $export AWS_CONFIG_FILE=$HOME/.aws/config
 ## for installing auto-complete for aws commands. 
 ## This will enable you to auto-complete aws commands by hitting tab
 $complete -C '/usr/local/bin/aws_completer' aws
+## For some system aws_completer is in /usr/bin. Modify you command accordingly.
 
 ## Check if evertything is working fine
 $aws ec2 describe-regions --output table
