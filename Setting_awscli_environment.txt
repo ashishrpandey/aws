@@ -35,8 +35,10 @@ $export AWS_CONFIG_FILE=$HOME/.aws/config
 
 ## for installing auto-complete for aws commands. 
 ## This will enable you to auto-complete aws commands by hitting tab
-$complete -C '/usr/local/bin/aws_completer' aws
-## For some system aws_completer is in /usr/bin. Modify you command accordingly.
+$which aws_completer
+It will give you path of aws_completer say "/usr/bin/aws_completer". Provide this path in following command:
+$complete -C '/usr/bin/aws_completer' aws
+## For some system aws_completer is in /usr/bin. Modify your command accordingly.
 
 ## Check if evertything is working fine
 $aws ec2 describe-regions --output table
