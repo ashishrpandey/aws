@@ -1,8 +1,11 @@
 
 Use powershell to install pip and awscli
 
-$sudo apt-get install python-pip    	# To install pip
-$sudo pip install awscli 		#install awscli tool
+$apt-get install python-pip    	# To install pip
+If pip is already installed just upgrade it
+
+$python -m pip install --upgrade pip
+$pip install awscli 		#install awscli tool
 
 
 The AWS CLI makes API calls to services over HTTPS. Outbound connections on TCP port 443 must be enabled in order to perform calls.
@@ -17,13 +20,13 @@ Adding the AWS CLI Executable to your Command Line Path
 
 After installing with pip, add the aws executable to your OS's PATH environment variable. With an MSI installation, this should happen automatically, but you may need to set it manually if the aws command is not working.
 
-    Python 3.4 and pip (user mode) – %USERPROFILE%\AppData\Roaming\Python\Scripts
+    Python 3.4 and pip (user mode) â€“ %USERPROFILE%\AppData\Roaming\Python\Scripts
 
-    Python 3.5+ and pip (user mode) – %USERPROFILE%\AppData\Roaming\Python\Python35\Scripts
+    Python 3.5+ and pip (user mode) â€“ %USERPROFILE%\AppData\Roaming\Python\Python35\Scripts
 
-    MSI installer (64-bit) – C:\Program Files\Amazon\AWSCLI
+    MSI installer (64-bit) â€“ C:\Program Files\Amazon\AWSCLI
 
-    MSI installer (32-bit) – C:\Program Files (x86)\Amazon\AWSCLI
+    MSI installer (32-bit) â€“ C:\Program Files (x86)\Amazon\AWSCLI
 
 To modify your PATH variable (Windows)
 
