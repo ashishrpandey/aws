@@ -1,16 +1,19 @@
 ## Preparing aws tools
 
-## On instances with Amazon Linux AMI, aws is pre-installed. In that case skip installation step and Go to configuration of aws.  
-## pip is normally preloaded on systems by default. If not use below comand to install pip:
+On instances with Amazon Linux AMI, aws is pre-installed. In that case skip installation step and Go to configuration of aws.  
+pip is normally preloaded on systems by default. If not use below comand to install pip:
+
     sudo apt-get install -y python-pip 
     OR
     yum install -y python-pip
  
- ## Use pip to install awscli
+ Use pip to install awscli
+    
     sudo pip install awscli
  
  
-## Add the secret aws access key in config file: $HOME/.aws/config 
+Add the secret aws access key in config file: $HOME/.aws/config 
+    
     aws_access_key_id = <access key id>
     aws_secret_access_key = <secret access key>
     region = us-west-1
